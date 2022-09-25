@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="icon" href="logo.png" type="image/icon type">
+	<title>Stopwatch</title>
+	<style type="text/css">
+		body{
+
+			
+			background-color: #21D4FD;
+background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+
+
+			background-size: 200% 200%;
+			background-repeat: no-repeat;
+			background-position: relative;
+			font-family: 'Poppins';
+			
+		}
+		.container{
+			justify-content: center;
+			padding-top: 100px;
+		}
+		.hcls{
+			font-size: 45px;
+		}
+		p{
+			font-size: 40px;
+		}
+		button{
+			font-size: 30px;
+			border:0.5px solid;
+			border-radius: 11px;
+            
+		}
+		
+		#btnstart:hover{
+			background-color: green;
+			color: white;
+			cursor: pointer;
+		}
+		#btnreset:hover{
+			background-color: blue;
+			color: white;
+			cursor: pointer;
+		}
+		#btnstop:hover{
+			background-color: red;
+			color: white;
+			cursor: pointer;
+		}
+	</style>
+
+</head>
+<body>
+	<center>
+	<div class="container">
+		<h1 class="hcls">Stopwatch</h1>
+		<p><span id="min">00</span>:&nbsp;
+			<span id="sec">00</span>:&nbsp; <span id="tens">00</span></p>
+		<button id="btnstart">Start</button>
+		<button id="btnstop">Stop</button>
+		<button id="btnreset">Reset</button>
+	</div>
+	<br><br><br><br>
+</center>
+<script>
+	window.onload=function(){
+
+      var min=0;
+		var sec= 0;
+		var tens= 0;
+		var appendtens=document.getElementById("tens");
+	var appendsec=document.getElementById("sec");
+	var appendmin=document.getElementById("min");
+	
+	var buttonstart=document.getElementById('btnstart');
+	var buttonstop=document.getElementById('btnstop');
+	var buttonreset=document.getElementById('btnreset');
+    var interval;
+
+    buttonstart.onclick=function(){
+    	clearInterval(interval);
+    	interval=setInterval(starttimer,10);
+    }
+      buttonstop.onclick=function(){
+    	clearInterval(interval);
+    	
+    }
+      buttonreset.onclick=function(){
+    	clearInterval(interval);
+
+    	tens="00";
+    	sec="00";
+    	min="00";
+    	appendtens.innerHTML=tens;
+    	appendsec.innerHTML=sec;
+        appendmin.innerHTML=min;
+    }
+
+    function starttimer()
+    {
+    	tens++;
+    	if(tens<=9)
+    	{
+    		appendtens.innerHTML="0"+tens;
+    	}
+    	if(tens>9)
+    	{
+    		appendtens.innerHTML=tens;
+    	}
+    	if(tens>99)
+    	{
+    		console.log("sec");
+    		sec++;
+            appendsec.innerHTML="0"+sec;
+            tens=0;
+            appendtens.innerHTML="0"+0;
+    	}
+    	if(sec>9)
+    	{
+    		appendsec.innerHTML=sec;
+    	}
+    	if(sec>59)
+    	{
+    		console.log("min");
+    		min++;
+    		appendmin.innerHTML="0"+min;
+    		appendsec.innerHTML="0"+sec;
+            sec=0;
+            appendsec.innerHTML="0"+0;
+    	}
+    	if(min>9)
+    	{
+    		appendmin.innerHTML=min;
+    	}
+    }
+}
+	
+</script>
+
+</body>
+</html>
